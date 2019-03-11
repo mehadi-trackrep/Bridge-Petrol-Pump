@@ -8,102 +8,66 @@
 
 <div class="container-fluid">
 
+<!-- ### Submenu nici: https://www.bootply.com/fe4AfcEnKD -->
+
             <!--== Navigation Bar Start  ==-->
         <% include partials/navbar.ejs %>
             <!-- == Error Messages == -->
         <% include partials/error_messages.ejs %>
-            <!-- == Main body starts here == -->
 
-            <div class="sidebar">
-                <ul class="list-unstyled components">
-                    <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Billing</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="/quickBill">Qucik bill</a>
-                            </li>
-                            <li>
-                                <a href="/billForVehicle">Bill for vehicle</a>
-                            </li>
-                            <li>
-                                <a href="/findBill">Find bills</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="active">
-                        <a href="#stockSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Stock</a>
-                        <ul class="collapse list-unstyled" id="stockSubmenu">
-                            <li>
-                                <a href="#">Qucik bill</a>
-                            </li>
-                            <li>
-                                <a href="#">Bill for vehicle</a>
-                            </li>
-                            <li>
-                                <a href="#">Find bills</a>
-                            </li>
-                        </ul>
-                    </li>
-            
-            
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="content">
-                <h2 style="padding:100px 0px 15px 130px; font-size: 36pt">Bill For Vehicle</h2>
-                <div class="names">
-                    <input type="text" name="fname" placeholder="Vehicle"><br>
-                    <input type="text" name="lname" placeholder="Company"><br>
+            <!-- == Main body starts here == -->
+            <div id="mySidebar" class="sidebar">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">X</a>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- menu -->
+                        <div id="MainMenu" style="background-color: black;">
+                            <div class="list-group panel">
+                                <a href="#" class="list-group-item list-group-item-success" data-parent="#MainMenu">Item 1</a>
+                                <a href="#" class="list-group-item list-group-item-success" data-parent="#MainMenu">Item 2</a>
+                                <a href="#demo4" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item 3  <i class="fa fa-caret-down"></i></a>
+                                <div class="collapse" id="demo4">
+                                    <a href="www.sust.edu" class="list-group-item">Subitem 1</a>
+                                    <a href="" class="list-group-item">Subitem 2</a>
+                                    <a href="" class="list-group-item">Subitem 3</a>
+                                </div>
+                                <a href="#demo4" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item 4  <i class="fa fa-caret-down"></i></a>
+                                <div class="collapse" id="demo4">
+                                    <a href="" class="list-group-item">Subitem 1</a>
+                                    <a href="" class="list-group-item">Subitem 2</a>
+                                    <a href="" class="list-group-item">Subitem 3</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            
-                <form class="form-inline">
-                    <label class="contain">Octen
-                        <input type="checkbox" checked="checked">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="contain">Petrol
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="contain">Disel
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </form>
-                <div class="names">
-                    <input type="text" name="fname" placeholder="Quantity"><br>
-                    <input type="text" name="lname" placeholder="Price"><br>
-                    <input type="text" name="fname" placeholder="Discount"><br>
-                    <input type="text" name="lname" placeholder="Total Price"><br>
-                </div>
-                <button class="myButton1">Confirm</button>
-                <button class="myButton2">Print</button>
-            
-            
             </div>
+              
+              <div class="col-sm-8" id="main">
+
+                <button class="openbtn" onclick="openNav()">☰</button>  
+                <h2>Collapsed Sidebar</h2>
+                <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+                <h2>Collapsed Sidebar</h2>
+                <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+                <h2>Collapsed Sidebar</h2>
+                <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+                <h2>Collapsed Sidebar</h2>
+                <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+                <h2>Collapsed Sidebar</h2>
+                <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+                <h2>Collapsed Sidebar</h2>
+                <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+                <h2>Collapsed Sidebar</h2>
+                <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+                <h2>Collapsed Sidebar</h2>
+                <p>Click on the hamburger menu/bar icon to open the sidebar, and push this content to the right.</p>
+
+              </div>
 
             <!--== Footer Area == -->
-      <% include partials/footer.ejs %>
+      <!-- <% include partials/footer.ejs %> -->
 
     </div>
             <!-- ## All Script files ## -->

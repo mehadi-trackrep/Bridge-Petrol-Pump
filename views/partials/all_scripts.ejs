@@ -1,5 +1,16 @@
 
     <script>
+
+        function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+        }
+
         $(document).ready(function(){
             $("#get_start_button").click(function(){
                 $("#get_start_button").slideToggle();
@@ -13,6 +24,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+
     <!-- Rev slider js -->
     <script src="/vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
     <script src="/vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
