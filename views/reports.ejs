@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+      <% include partials/head.ejs %>
+    </head>
+<body>
+
+<div class="container-fluid">
+
+            <!--== Navigation Bar Start  ==-->
+        <% include partials/navbar.ejs %>
+            <!-- == Error Messages == -->
+        <% include partials/error_messages.ejs %>
+            <!-- == Main body starts here == -->
+
+            <div class="sidebar">
+                <ul class="list-unstyled components">
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Billing</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="/quickBill">Qucik bill</a>
+                            </li>
+                            <li>
+                                <a href="/billForVehicle">Bill for vehicle</a>
+                            </li>
+                            <li>
+                                <a href="/findBill">Find bills</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="#stockSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Stock</a>
+                        <ul class="collapse list-unstyled" id="stockSubmenu">
+                            <li>
+                                <a href="#">Qucik bill</a>
+                            </li>
+                            <li>
+                                <a href="#">Bill for vehicle</a>
+                            </li>
+                            <li>
+                                <a href="#">Find bills</a>
+                            </li>
+                        </ul>
+                    </li>
+            
+            
+                    <li>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="#">Page 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="content">
+                <h2 style="padding:100px 0px 15px 130px; font-size: 36pt">Bill For Vehicle</h2>
+                <div class="names">
+                    <input type="text" name="fname" placeholder="Vehicle"><br>
+                    <input type="text" name="lname" placeholder="Company"><br>
+                </div>
+            
+                <form class="form-inline">
+                    <label class="contain">Octen
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="contain">Petrol
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="contain">Disel
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </form>
+                <div class="names">
+                    <input type="text" name="fname" placeholder="Quantity"><br>
+                    <input type="text" name="lname" placeholder="Price"><br>
+                    <input type="text" name="fname" placeholder="Discount"><br>
+                    <input type="text" name="lname" placeholder="Total Price"><br>
+                </div>
+                <button class="myButton1">Confirm</button>
+                <button class="myButton2">Print</button>
+            
+            
+            </div>
+
+            <!--== Footer Area == -->
+      <% include partials/footer.ejs %>
+
+    </div>
+            <!-- ## All Script files ## -->
+      <% include partials/all_scripts.ejs %>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+      <% include partials/head.ejs %>
+    </head>
+<body>
+
+<div class="container-fluid">
+
+      <!--================ Navigation Bar Start  =================-->
+        <% include partials/navbar.ejs %>
+      <!--================End Navigation Bar =================-->
+
+      <!--================Slider Area =================-->
+        <% include partials/carousol.ejs %>
+      <!--================End Slider Area =================-->
+
+      <!-- =============== Error Messages ================ -->
+        <% include partials/error_messages.ejs %>    
+      <!-- =============== Error Messages End ================= -->
+
+<!--================Footer Area =================-->
+      <% include partials/footer.ejs %>
+<!--================End Footer Area =================-->
+
+    </div>
+
+    <!-- ########### All Script files ########### -->
+      <% include partials/all_scripts.ejs %>
+
+</body>
+</html>
