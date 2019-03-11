@@ -14,6 +14,7 @@ var nodemailer = require("nodemailer");
 
 // ##########  NEW CODES #############
 
+// router.get('/report', ensureAuthenticated, function(req, res, next){
 router.get('/report', function(req, res, next){
   var username = "";
   if(req.session.username){
