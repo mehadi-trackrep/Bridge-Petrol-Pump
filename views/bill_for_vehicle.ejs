@@ -1,0 +1,124 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+      <% include partials/head.ejs %>
+    </head>
+<body>
+
+<div class="container-fluid">
+
+<!-- ### Submenu nici: https://www.bootply.com/fe4AfcEnKD -->
+
+            <!--== Navigation Bar Start  ==-->
+        <% include partials/navbar.ejs %>
+            <!-- == Error Messages == -->
+        <% include partials/error_messages.ejs %>
+
+            <!-- == Main body starts here == -->
+        <% include partials/sidebar.ejs %>
+
+        <div class="col-sm-6">
+            <form method="POST" action="/users/bill_for_vehicle">
+                    <center>
+                    <h2>Bill for vehicle</h2><br>
+                    <div class="form-group col-md-6">
+                            <select name="vehicle" id="inputVehicle" class="form-control">
+                                <option selected>Bus</option>
+                                <option>Micro Bus</option>
+                                <option>Truck</option>
+                            </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select name="company" id="inputCompany" class="form-control">
+                            <option selected>Unique</option>
+                            <option>Hanif</option>
+                            <option>Shamoli</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radio_btn"  value="octane" checked>
+                            <label class="form-check-label" for="" style="margin-left: -25px; font-size: 15px; margin-right: 15px;">
+                                Octane
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radio_btn" value="petrol">
+                            <label class="form-check-label" for="exampleRadios2" style="margin-left: -25px; font-size: 15px; margin-right: 15px;">
+                                Petrol
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radio_btn" value="disel">
+                            <label class="form-check-label" for="exampleRadios3" style="margin-left: -25px; font-size: 15px; margin-right: 15px;">
+                                Disel
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-row col-sm-6">
+                        <div class="col-sm-10">
+                            <input class="form-control" name="quantity" type="value" placeholder="Quantity" required>
+                        </div>
+                        <div class="col-sm-2">
+                            <h6>Ltr</h6>
+                        </div>
+                    </div>                    
+                    <br>
+                    <div class="form-group col-sm-6" style="margin-left: -130px;">
+                        <div class="col-sm-6">
+                            <label for="stock">Stock 50000 Ltr</label>
+                        </div>
+                        <div class="col-sm-6">
+                                <label for="stock">Stock after sale 48000 Ltr</label>
+                        </div>    
+                    </div>
+
+                    <div class="form-row col-sm-6" style="margin-top: 15px;">
+                        <div class="col-sm-9">
+                            <input class="form-control" name="price" type="value" placeholder="Price" required>
+                        </div>
+                        <div class="col-sm-3">
+                            <h6>Per Ltr</h6>
+                        </div>
+                    </div> 
+
+
+                    <div class="form-row col-sm-6" style="margin-top: 15px;">
+                        <div class="col-sm-9">
+                            <input class="form-control" name="discount" type="value" placeholder="Discount" required>
+                        </div>
+                        <div class="col-sm-3">
+                            <h6>% per Ltr</h6>
+                        </div>
+                    </div> 
+
+                    <div class="form-row col-sm-6" style="margin-top: 15px;">
+                        <div class="col-sm-12">
+                            <input class="form-control" name="total_price" type="value" placeholder="Total price" required>
+                        </div>
+                    </div> 
+
+                    <div class="form-row col-sm-6" style="margin-top: 15px;">
+                        <div class="col-sm-6">
+                            <input class="btn" type="submit" value="Confirm">
+                        </div>
+                        <div class="col-sm-6">
+                            <input class="btn" type="submit" value="Print">
+                        </div>
+                    </div>
+
+                    </form>
+                </center>
+            </div>
+
+            <!--== Footer Area == -->
+      <!-- <% include partials/footer.ejs %> -->
+
+    </div>
+            <!-- ## All Script files ## -->
+      <% include partials/all_scripts.ejs %>
+
+</body>
+</html>

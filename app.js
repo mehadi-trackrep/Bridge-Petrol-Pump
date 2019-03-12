@@ -74,6 +74,7 @@ app.use(function (req, res, next) {
   res.locals.error_msg = req.flash('error_msg');
   res.locals.info = req.flash('info');
   res.locals.error = req.flash('error');
+  res.locals.email_flash = req.flash('email_flash');
   res.locals.user = req.user || null;
 next();
 });

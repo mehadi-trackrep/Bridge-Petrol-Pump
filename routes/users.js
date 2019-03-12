@@ -5,17 +5,18 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var dateTime = require('node-datetime');
 var User = require('../models/user');
-var CoinDetails = require('../models/coinDetails');
-// ............
-global.fetch = require('node-fetch');
-const cc = require('cryptocompare');
+var BillDetails = require('../models/bill_details');
+
 var pass = "smmh3749";
 var nodemailer = require("nodemailer");
 
 // ##########  NEW CODES #############
 
-// router.get('/report', ensureAuthenticated, function(req, res, next){
-router.get('/report', function(req, res, next){
+var dt = dateTime.create();
+var formatted = dt.format('Y-m-d H:M:S');
+
+router.get('/report', ensureAuthenticated, function(req, res, next){
+// router.get('/report', function(req, res, next){
   var username = "";
   if(req.session.username){
     console.log("user is logged in ..");
@@ -25,8 +26,44 @@ router.get('/report', function(req, res, next){
   res.render('reports', {username: username});
 });
 
+router.get('/bill_for_vehicle', function(req, res, next){
+  var username = "";
+  if(req.session.username) username = req.session.username;
+  res.render('bill_for_vehicle', {username: username});
+});
 
+router.post('/bill_for_vehicle', function(req, res, next){
+    var vehicle = req.body.vehicle;
+    var company = req.body.company;
+    var product = req.body.radio_btn;
+    var quantity = req.body.quantity;
+    var price = req.body.price;
+    var discount = req.body.discount;
+    var total_price = req.body.total_price;
 
+    var mail = req.session.user;
+
+    // console.log("#### mail: ####" + user);
+
+      // To store data(or, create a new user)
+    var newBills = new BillDetails({
+        email: mail,
+        vehicle: vehicle,
+        company: company,
+        product: product,
+        quantity: quantity,
+        price: price,
+        discount: discount,
+        total_price: total_price
+    });
+    BillDetails.createBillDetails(newBills, function(err, user){  // etai user Model er "module.exports.createUser" line er code ta , jeta baire theke access korte parci ..
+        if(err) throw err;
+        console.log(user);
+    });
+
+    //req.flash('success_msg', 'Email verification code is sent!!');
+    res.redirect('/users/login');
+});
 
 
 
@@ -189,7 +226,7 @@ router.post('/register', function(req, res){
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
-    session: false
+    session: true
   },
   function(username, password, done) {
     User.getUserByEmail(username, function (err, user) {
@@ -220,10 +257,6 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.post('/login',
-//   passport.authenticate('local',{session: true, successFlash: 'Logged in!', successRedirect: '/',
-//                                    failureRedirect: '/login',
-//                                    failureFlash: true })
-// );
   passport.authenticate('local', {successRedirect: '/users/home', failureRedirect: '/users/login', failureFlash: true}),
   function(req, res) {
     console.log("\n===========\nThe logged in user: "+req.user.username);
