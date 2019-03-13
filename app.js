@@ -38,8 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Express Session
 app.use(session({
     secret: 'secret',
-    saveUninitialized: true,
-    resave: true
+    saveUninitialized: false,
+    resave: false
 }));
 
 
@@ -83,7 +83,7 @@ app.use('/', routes);  // routes for HomePage
 app.use('/users', users);
 
 // Set Port
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 4549));
 
 app.listen(app.get('port'), function(){
 	console.log('Server started on port '+app.get('port'));

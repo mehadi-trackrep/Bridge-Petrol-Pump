@@ -18,9 +18,10 @@ var formatted = dt.format('Y-m-d H:M:S');
 router.get('/report', ensureAuthenticated, function(req, res, next){
 // router.get('/report', function(req, res, next){
   var username = "";
-  if(req.session.username){
-    console.log("user is logged in ..");
-    username = req.session.username;
+  if(req.session.name){
+    console.log("\n======> logged in obostai ace =============\n");
+    console.log("==> The user name is: ", req.session.name);
+    username = req.session.name;
   }
   req.session.errors = null;
   res.render('reports', {username: username});
@@ -28,7 +29,7 @@ router.get('/report', ensureAuthenticated, function(req, res, next){
 
 router.get('/bill_for_vehicle', function(req, res, next){
   var username = "";
-  if(req.session.username) username = req.session.username;
+  if(req.session.name) username = req.session.name;
   res.render('bill_for_vehicle', {username: username});
 });
 
@@ -70,11 +71,6 @@ router.post('/bill_for_vehicle', function(req, res, next){
 
 
 
-
-
-
-
-
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -85,6 +81,7 @@ var smtpTransport = nodemailer.createTransport({
       rejectUnauthorized: true
     }
 });
+
 var rand, mailOptions, host, link, global_email;
 
 router.get('/aboutUs', function(req, res, next){
@@ -94,9 +91,9 @@ router.get('/aboutUs', function(req, res, next){
 // Register
 router.get('/register', function(req, res){
   var username = "";
-  if(req.session.username){
+  if(req.session.name){
     console.log("user is logged in ..");
-    username = req.session.username;
+    username = req.session.name;
   }
   req.session.errors = null;
   res.render('register', {username: username});
@@ -105,9 +102,9 @@ router.get('/register', function(req, res){
 // HomePage
 router.get('/home', function (req, res) {
     var username = "";
-    if(req.session.username){
+    if(req.session.name){
       console.log("\n--------------------- user is logged in .........................\n");
-      username = req.session.username;
+      username = req.session.name;
     }
     res.render('index', {username: username});
 });
@@ -125,33 +122,19 @@ function ensureAuthenticated(req, res, next){
 // Login
 router.get('/login', function(req, res, next){
   var username = "";
-  if(req.session.username){
+  if(req.session.name){
     console.log("user is logged in ..");
-    username = req.session.username;
+    username = req.session.name;
   }
   res.render('login', {username: username});
 });
 
-router.get('/verify/:id', function(req,res){
-  console.log("check the global_email:");
-  console.log(global_email);
-  if(req.params.id == rand){
-    User.updateOne({email: global_email}, {$set:{"approved": true}}, function(er, result){
-      if(err) throw err;
-      else{
-        req.flash('success_msg', "Email is verified!!");
-        console.log("verified the email");
-      }
-    });
-  }
-  res.redirect('/users/login');
-});
 
 // Register User
 router.post('/register', function(req, res){
     var name = req.body.name;
-    var username = req.body.username;
     var email = req.body.email;
+    var location = req.body.location;
     var password = req.body.password;
     var password2 = req.body.password2;
     
@@ -181,7 +164,7 @@ router.post('/register', function(req, res){
               var newUser = new User({
                   name: name,
                   email: email,
-                  username: username,
+                  location: location,
                   password: password,
                   approved: false
               });
@@ -190,37 +173,11 @@ router.post('/register', function(req, res){
                   // console.log(user);
               });
 
-              rand = Math.floor((Math.random() * 100) + 54);
-              link = "http://"+host+"/users/verify/id="+rand;
-
-              console.log(link);
-              global_email = email;
-              mailOptions={
-                  from: '"MMH-MKBS"<mehadi541@gmail.com>',
-                  to : email,
-                  subject : "Please confirm your Email account",
-                  html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"
-              }
-
-              console.log(mailOptions);
-
-              smtpTransport.sendMail(mailOptions, function(error, response){
-               if(error){
-                      console.log(error);
-                  res.end("error");
-               }else{
-                      console.log("Message sent: " + response.message);
-                  res.end("sent");
-                   }
-              });
-
-              req.flash('success_msg', 'Email verification code is sent!!');
+              req.flash('success_msg', 'Successfully registered!!');
               res.redirect('/users/login');
-              // console.log('PASSED');
           }
       });
     }
-        // console.log("name: "+name + " username: "+username+" email "+email+" password "+password + " password2 "+password2);
 });
 
 passport.use(new LocalStrategy({
