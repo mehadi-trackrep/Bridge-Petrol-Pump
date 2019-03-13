@@ -1,0 +1,64 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+      <% include partials/head.ejs %>
+    </head>
+<body>
+
+<div class="container-fluid">
+
+<!-- ### Submenu nici: https://www.bootply.com/fe4AfcEnKD -->
+
+            <!--== Navigation Bar Start  ==-->
+        <% include partials/navbar.ejs %>
+            <!-- == Error Messages == -->
+        <% include partials/error_messages.ejs %>
+
+            <!-- == Main body starts here == -->
+        <% include partials/sidebar.ejs %>
+
+        <div class="col-sm-6" style="margin-left: 260px;">
+            <form method="POST" action="/users/add_stock">
+                    <center>
+                    <h2>Add stock</h2><br>
+
+                    <div class="form-group col-sm-12">
+                            <select name="product" class="form-control">
+                                <% for(var i=0; i < results.length; i++) { %>
+                                    <option><%= results[i].product %></option>
+                                <% } %>
+                            </select>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 15px;">
+                        <div class="col-sm-12">
+                            <input class="form-control" name="quantity" type="number" placeholder="Quantity" required>
+                        </div>
+                    </div> 
+                    <div class="form-group" style="margin-top: 15px;">
+                        <div class="col-sm-12">
+                            <input class="form-control" name="buying_price" type="value" placeholder="Buying Price" required>
+                        </div>
+                    </div> 
+                    <div class="form-group" style="margin-top: 15px;">
+                        <div class="col-sm-12">
+                            <input class="form-control" name="selling_price" type="value" placeholder="Selling Price" required>
+                        </div>
+                    </div> 
+
+                    <div class="form-group" style="margin-top: 15px;">
+                        <input class="btn" type="submit" value="Add Stock">
+                    </div>
+
+            </form>
+                </center>
+            </div>
+
+
+    </div>
+            <!-- ## All Script files ## -->
+      <% include partials/all_scripts.ejs %>
+
+</body>
+</html>

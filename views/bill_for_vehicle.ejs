@@ -8,8 +8,6 @@
 
 <div class="container-fluid">
 
-<!-- ### Submenu nici: https://www.bootply.com/fe4AfcEnKD -->
-
             <!--== Navigation Bar Start  ==-->
         <% include partials/navbar.ejs %>
             <!-- == Error Messages == -->
@@ -18,7 +16,7 @@
             <!-- == Main body starts here == -->
         <% include partials/sidebar.ejs %>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="margin-left: 100px;">
             <form method="POST" action="/users/bill_for_vehicle">
                     <center>
                     <h2>Bill for vehicle</h2><br>
@@ -83,8 +81,6 @@
                             <h6>Per Ltr</h6>
                         </div>
                     </div> 
-
-
                     <div class="form-row col-sm-6" style="margin-top: 15px;">
                         <div class="col-sm-9">
                             <input class="form-control" name="discount" type="value" placeholder="Discount" required>

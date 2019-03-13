@@ -1,14 +1,18 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 var bodyParser = require('body-parser');
+var Parse = require('parse/node');
+
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
+
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
@@ -19,49 +23,68 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 
-var Parse = require('parse/node');
+
+
 Parse.Promise = global.Promise;
 Parse.initialize("zDmdrUrvD3WFdIM4", "", "TtW6WcNARzGvVbBN");
 Parse.serverURL = 'https://bppbackend.herokuapp.com/api';
 
-//sample insert example below
-const GameScore = Parse.Object.extend("GameScore");
-const gameScore = new GameScore();
+//################## sample insert example below ##########################
+// const GameScore = Parse.Object.extend("GameScore");
+// const gameScore = new GameScore();
 
-gameScore.set("score", 1337);
-gameScore.set("playerName", "Sean Plott");
-gameScore.set("cheatMode", false);
+// gameScore.set("score", 1337);
+// gameScore.set("playerName", "Sean Plott");
+// gameScore.set("cheatMode", false);
 
-gameScore.save()
-.then((gameScore) => {
-  // Execute any logic that should take place after the object is saved.
-  console.log('New object created with objectId: ' + gameScore.id);
-}, (error) => {
-  // Execute any logic that should take place if the save fails.
-  // error is a Parse.Error with an error code and message.
-  console.log('Failed to create new object, with error code: ' + error.message);
-});
+// gameScore.save()
+// .then((gameScore) => {
+//   // Execute any logic that should take place after the object is saved.
+//   console.log('New object created with objectId: ' + gameScore.id);
+// }, (error) => {
+//   // Execute any logic that should take place if the save fails.
+//   // error is a Parse.Error with an error code and message.
+//   console.log('Failed to create new object, with error code: ' + error.message);
+// });
 
-//Init App
-var app = express(); // Only we have to 'set' view engine
-                     // otherwise 'use' some folder/modules
-                     // for this we have to use:
-                     // app.set(), app.use()
 
-//View Engine
-app.set('views', path.join(__dirname, 'views'));  // views + views er under a joto gula folder ace shobar path dite hobe ..
+
+//app
+var app = express();
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
-// BodyParser Middleware
 //modules
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-
-// Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json());
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With,Accept,Content-Type, Authorization'
+    );
+    if (req.method === 'OPTIONS') {
+        res.header(
+            'Access-Control-Allow-Methods',
+            'GET,POST,PUT,PATCH,DELETE'
+        );
+        return res.status(200).json({});
+    }
+    next();
+});
+//route
+//####
+// var baseRouter = require('./api/v1/route/base');
+// app.use('/api/v1/base', baseRouter);
+
 
 // Express Session
 app.use(session({
@@ -110,12 +133,24 @@ next();
 app.use('/', routes);  // routes for HomePage
 app.use('/users', users);
 
-// Set Port
-app.set('port', (process.env.PORT || 4549));
+//error handling
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+    next(createError(404));
+});
+// error handler
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-app.listen(app.get('port'), function(){
-	console.log('Server started on port '+app.get('port'));
+    // render the error page
+    res.status(err.status || 500);
+    res.json({
+        error: {
+            message: err.message
+        }
+    });
 });
 
-
-exports = module.exports = app;
+module.exports = app;
