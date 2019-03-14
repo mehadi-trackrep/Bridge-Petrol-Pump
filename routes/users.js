@@ -258,16 +258,6 @@ router.post('/add_stock', function(req, res, next){
         }
      });
   });
-
-  // ProductDetails.find({ product: product }).snapshot().forEach((doc) => {
-  //     doc.quantity = quantity + doc.quantity;
-  //     doc.buying_price = buying_price;
-  //     doc.selling_price = selling_price;
-  //     ProductDetails.save(doc);
-  // });
-
-  // req.flash('success_msg', 'Successfully stock added!!');
-  // res.redirect('/users/view_stock');
 });
 
 
@@ -352,7 +342,7 @@ router.post('/add_product', function(req, res, next){
           });
           console.log("product added!");
           req.flash('success_msg', 'Successfully product added!!');
-          res.redirect('/users/view_product');
+          res.redirect('/users/view_products');
       }
   });
 });
