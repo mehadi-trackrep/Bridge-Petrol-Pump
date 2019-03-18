@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<% include ../common/head.ejs %>
+
+<body>
+    <% include ../common/sideBar.ejs %>
+    <header id="header">
+        <% include ../common/navBar.ejs %>
+    </header>
+    <div class="mui-container">
+        <div class="mui-panel" style="margin-top: 72px; margin-left:10% ">
+            <form class="mui-form" method="POST" action="/vehicle/insertInDb">
+                <legend>Add Vehicle</legend>
+                <div class="mui-row">
+                    <div class="mui-select mui-col-md-12">
+                        <select name="company_name">
+                            <% products.forEach(function (product) { %>
+                            <option><%= product.get('name') %></option>
+                            <% }) %>
+                        </select>
+                        <label>Select product</label>
+                    </div>
+                </div>
+                <div class="mui-textfield">
+                    <input type="text" name="registration" required placeholder="Registration No." />
+                </div>
+                <div class="mui-row">
+                    <div class="mui-select mui-col-md-12">
+                        <select name="vehicle_type">
+                            <option selected>Bus</option>
+                            <option>Micro Bus</option>
+                            <option>Mini Bus</option>
+                            <option>Truck</option>
+                            <option>Pick up</option>
+                            <option>Car</option>
+                            <option>Leguna</option>
+                            <option>Zeep</option>
+                        </select>
+                        <label>Select product</label>
+                    </div>
+                </div>
+                <div class="mui-textfield">
+                    <input type="text" name="color" required placeholder="Color" />
+                </div>
+                <div class="mui-textfield">
+                    <input type="text" name="driver" required placeholder="Driver name" />
+                </div>
+                <div class="mui-textfield">
+                    <input type="text" name="driver_no" required placeholder="Driver Contact" />
+                </div>
+
+                <button class="mui-btn mui-btn--primary mui-btn--raised" type="submit">
+                    Confirm
+                </button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer" style="background-color: black;">
+        <div class="mui-container-fluid">
+            <br>
+            <center> Made with ♥ by <a href="#">Bridge Tech</a> </center>
+        </div>
+    </footer>
+</body>
+
+</html>

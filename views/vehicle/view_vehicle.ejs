@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<% include ../common/head.ejs %>
+
+<body>
+  <% include ../common/sideBar.ejs %>
+  <header id="header">
+    <% include ../common/navBar.ejs %>
+  </header>
+
+  <div id="content-wrapper ">
+    <div class="mui--appbar-height"></div>
+    <div class="mui-container">
+      <div class="mui-panel" style="margin-top: 1%; margin-left:10% ">
+        <h2>Search Vehicles</h2>
+        <div class="mui-textfield mui-textfield--float-label">
+          <input id="myInput" type="text">
+          <label>Search..</label>
+        </div>
+        <br>
+        <table class="mui-table">
+          <thead>
+            <tr>
+              <th>Company name</th>
+              <th>Registration</th>
+              <th>Type</th>
+              <th>Driver Name</th>
+              <th>Driver Contact</th>
+            </tr>
+          </thead>
+          <tbody id="myTable">
+            <% products.forEach(function (product) { %>
+            <tr>
+              <td><%= product.get('companyName') %></td>
+              <td><%= product.get('registration') %></td>
+              <td><%= product.get('vehicle_type') %></td>
+              <td><%= product.get('driver') %></td>
+              <td><%= product.get('driver_no') %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+  <footer id="footer" style="background-color: black;">
+    <div class="mui-container-fluid">
+      <br>
+      <center> Made with ♥ by <a href="#">Bridge Tech</a> </center>
+    </div>
+  </footer>
+  <script>
+    $(document).ready(function () {
+      $("#myInput").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

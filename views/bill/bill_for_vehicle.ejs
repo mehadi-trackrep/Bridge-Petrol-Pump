@@ -1,0 +1,124 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <% include ../common/head.ejs %>
+</head>
+
+<body>
+    <!--== Navigation + Side Bar Start  ==-->
+
+    <% include ../common/sideBar.ejs %>
+    <header id="header">
+        <% include ../common/navBar.ejs %>
+    </header>
+
+    <!-- == Main body starts here == -->
+
+    <div id="content-wrapper">
+        <div class="mui--appbar-height"></div>
+        <div class="mui-container">
+            <br>
+            <div class="mui-panel" style="margin-top: 1%; margin-left:1% ">
+                <form method="POST" action="/bill/bill_for_vehicle" class="mui-form"
+                    style="margin-left: 10%; margin-top: 0%;">
+                    <h1 style="margin-left: 5%;">Bill for vehicle</h1>
+                    <div class="mui-row">
+                        <div class="mui-select mui-col-md-4">
+                            <select name="company">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                                <option>Option 4</option>
+                            </select>
+                            <label>Select company</label>
+                        </div>
+                    </div>
+                    <div class="mui-row">
+                        <div class="mui-select mui-col-md-4">
+                            <select name="vehicle">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                                <option>Option 4</option>
+                            </select>
+                            <label>Select vehicle</label>
+                        </div>
+                    </div>
+
+                    <ul class="mui-list--inline">
+                        <li>
+                            <div class="mui-radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="Disel" checked>
+                                    Disel
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mui-radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="Petrol">
+                                    Petrol
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mui-radio">
+                                <label>
+                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="Octane">
+                                    Octane
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="mui-row">
+                        <div class="mui-textfield mui-col-md-4">
+                            <input type="text" name="quantity" required placeholder="Quantity">
+                        </div>
+                        <div class="mui-col-md-2">
+                            <p style="margin-top: 20px;">Ltr</p>
+                        </div>
+                    </div>
+
+                    <ul class="mui-list--inline">
+                        <li>
+                            <h5>* Stock [[]] Ltr, </h5>
+                        </li>
+                        <li>
+                            <h5>* Stock after sale [[]] Ltr</h5>
+                        </li>
+                    </ul>
+
+                    <h4>* Price [[]] Per Ltr</h4>
+                    <h4>* Discount [[]] % or per Ltr</h4>
+                    <h3>* Total price [[]]</h3>
+
+                    <ul class="mui-list--inline">
+                        <li>
+                            <button type="submit" class="mui-btn mui-btn--raised">Confirm</button>
+                        </li>
+                        <li>
+                            <button type="submit" class="mui-btn mui-btn--raised">Print</button>
+                        </li>
+                    </ul>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer" style="background-color: black;">
+        <div class="mui-container-fluid">
+            <br>
+            <center> Made with ♥ by <a href="#">Bridge Tech</a> </center>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
