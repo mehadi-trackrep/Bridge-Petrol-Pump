@@ -8,7 +8,6 @@
   <header id="header">
     <% include ../common/navBar.ejs %>
   </header>
-
   <div id="content-wrapper ">
     <div class="mui--appbar-height"></div>
     <div class="mui-container">
@@ -19,45 +18,28 @@
           <label>Search..</label>
         </div>
         <br>
-        <table class="mui-table">
+        <table id="customers">
           <thead>
             <tr>
-              <th>Company name</th>
               <th>Vehicle</th>
-              <th>Fuel</th>
+              <th>Company name</th>
+              <th>Product</th>
               <th>Quantity</th>
-              <th>Price</th>
+              <th>Discount</th>
+              <th>Total price</th>
             </tr>
           </thead>
           <tbody id="myTable">
+            <% bills.forEach(function (bill) { %>
             <tr>
-              <td>John</td>
-              <td>Doe</td>
-              <td>john@example.com</td>
-              <td>john@example.com</td>
-              <td>john@example.com</td>
+              <td><%= bill.get('vehicle') %></td>
+              <td><%= bill.get('company') %></td>
+              <td><%= bill.get('product') %></td>
+              <td><%= bill.get('quantity') %></td>
+              <td><%= bill.get('discount') %></td>
+              <td><%= bill.get('totalPrice') %></td>
             </tr>
-            <tr>
-              <td>Mary</td>
-              <td>Moe</td>
-              <td>mary@mail.com</td>
-              <td>Moe</td>
-              <td>Moe</td>
-            </tr>
-            <tr>
-              <td>July</td>
-              <td>Dooley</td>
-              <td>july@greatstuff.com</td>
-              <td>Dooley</td>
-              <td>Dooley</td>
-            </tr>
-            <tr>
-              <td>Anja</td>
-              <td>Ravendale</td>
-              <td>a_r@test.com</td>
-              <td>a_r@test.com</td>
-              <td>a_r@test.com</td>
-            </tr>
+            <% }); %>
           </tbody>
         </table>
 
@@ -65,12 +47,7 @@
 
     </div>
   </div>
-  <footer id="footer" style="background-color: black;">
-    <div class="mui-container-fluid">
-      <br>
-      <center> Made with ♥ by <a href="#">Bridge Tech</a> </center>
-    </div>
-  </footer>
+  <% include ../common/footer.ejs %>
 
   <script>
     $(document).ready(function () {

@@ -9,49 +9,48 @@
     <% include ../common/navBar.ejs %>
   </header>
 
-  <div id="content-wrapper ">
+  <div id="content-wrapper " style="overflow: hidden">
     <div class="mui--appbar-height"></div>
     <div class="mui-container">
-      <div class="mui-panel" style="margin-top: 1%; margin-left:10% ">
+      <div class="mui-panel" style="margin-top: 1%; margin-left:10%; display: block;">
         <h2>Search Customers</h2>
         <div class="mui-textfield mui-textfield--float-label">
           <input id="myInput" type="text">
           <label>Search..</label>
         </div>
         <br>
-        <table class="mui-table">
-          <thead>
-            <tr>
-              <th>Comapny Name</th>
-              <th>Address</th>
-              <th>Email</th>
-              <th>Contact Person</th>
-              <th>Contact</th>
-            </tr>
-          </thead>
-          <tbody id="myTable">
-            <% products.forEach(function (product) { %>
-            <tr>
-              <td><%= product.get('name') %></td>
-              <td><%= product.get('address') %></td>
-              <td><%= product.get('email') %></td>
-              <td><%= product.get('contact_person') %></td>
-              <td><%= product.get('contact_no') %></td>
-            </tr>
-            <% }); %>
-          </tbody>
-        </table>
-
+        <div class="mui-panel" style=" height: 500px;">
+          <div style="height:500px;overflow-y:auto;overflow-x:auto;margin-top: 1%; ">
+            <table id="customers" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%"
+              style="overflow: scroll;">
+              <thead>
+                <tr>
+                  <th>Comapny Name</th>
+                  <th>Address</th>
+                  <th>Email</th>
+                  <th>Contact Person</th>
+                  <th>Contact</th>
+                </tr>
+              </thead>
+              <tbody id="myTable">
+                <% products.forEach(function (product) { %>
+                <tr>
+                  <td><%= product.get('name') %></td>
+                  <td><%= product.get('address') %></td>
+                  <td><%= product.get('email') %></td>
+                  <td><%= product.get('contact_person') %></td>
+                  <td><%= product.get('contact_no') %></td>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
-  <footer id="footer" style="background-color: black;">
-    <div class="mui-container-fluid">
-      <br>
-      <center> Made with ♥ by <a href="#">Bridge Tech</a> </center>
-    </div>
-  </footer>
+
+  <% include ../common/footer.ejs %>
   <script>
     $(document).ready(function () {
       $("#myInput").on("keyup", function () {
@@ -60,6 +59,13 @@
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
+    });
+    $(document).ready(function () {
+      $('#customers').DataTable({
+        "scrollY": "50vh",
+        "scrollCollapse": true,
+      });
+      $('.dataTables_length').addClass('bs-select');
     });
   </script>
 </body>

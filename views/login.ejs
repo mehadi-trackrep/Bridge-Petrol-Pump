@@ -2,18 +2,16 @@
 
 <html lang="en">
 
-<head>
-    <% include partials/head.ejs %>
-</head>
+
+<% include ../common/head.ejs %>
+
 
 <body>
 
     <div class="container-fluid">
 
-        <!--== Navigation Bar Start  ==-->
-        <% include partials/navbar.ejs %>
-        <!-- == Error Messages == -->
-      
+
+
         <!-- == Main body starts here == -->
         <center>
             <div class="col-sm-8" id="login_div" style="margin-top: -10px;">
@@ -32,13 +30,9 @@
                 </form>
             </div>
         </center>
-        <!--== Footer Area == -->
-        <% include partials/footer.ejs %>
-
     </div>
-    <!-- ## All Script files ## -->
-    <% include partials/all_scripts.ejs %>
 
+    <% include ../common/footer.ejs %>
 </body>
 
 </html>

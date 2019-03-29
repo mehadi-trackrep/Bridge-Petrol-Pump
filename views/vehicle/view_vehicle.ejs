@@ -19,7 +19,8 @@
           <label>Search..</label>
         </div>
         <br>
-        <table class="mui-table">
+        <table id="customers">
+          <!-- class="mui-table mui-table--bordered" -->
           <thead>
             <tr>
               <th>Company name</th>
@@ -30,13 +31,13 @@
             </tr>
           </thead>
           <tbody id="myTable">
-            <% products.forEach(function (product) { %>
+            <% vehicles.forEach(function (vehicle) { %>
             <tr>
-              <td><%= product.get('companyName') %></td>
-              <td><%= product.get('registration') %></td>
-              <td><%= product.get('vehicle_type') %></td>
-              <td><%= product.get('driver') %></td>
-              <td><%= product.get('driver_no') %></td>
+              <td><%= vehicle.get('companyName').get('name') %></td>
+              <td><%= vehicle.get('registration') %></td>
+              <td><%= vehicle.get('vehicle_type') %></td>
+              <td><%= vehicle.get('driver') %></td>
+              <td><%= vehicle.get('driver_no') %></td>
             </tr>
             <% }); %>
           </tbody>
@@ -46,12 +47,7 @@
 
     </div>
   </div>
-  <footer id="footer" style="background-color: black;">
-    <div class="mui-container-fluid">
-      <br>
-      <center> Made with ♥ by <a href="#">Bridge Tech</a> </center>
-    </div>
-  </footer>
+  <% include ../common/footer.ejs %>
   <script>
     $(document).ready(function () {
       $("#myInput").on("keyup", function () {

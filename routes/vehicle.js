@@ -10,7 +10,7 @@ router.get('/add_vehicle', function (req, res) {
         .find()
         .then(result => {
             console.log(result)
-            res.render('vehicle/add_vehicle', { products: result })
+            res.render('vehicle/add_vehicle', { customers: result })
         })
         .catch(err => {
             res.render('vehicle/view_vehicle', { error: err })
@@ -22,11 +22,12 @@ router.get('/add_vehicle', function (req, res) {
 router.get('/view_vehicle', function (req, res) {
     const Product = Parse.Object.extend('Vehicle')
     const query = new Parse.Query(Product)
+    query.include("companyName");
     query
         .find()
         .then(result => {
             console.log(result)
-            res.render('vehicle/view_vehicle', { products: result })
+            res.render('vehicle/view_vehicle', { vehicles: result })
         })
         .catch(err => {
             res.render('vehicle/view_vehicle', { error: err })
@@ -38,34 +39,48 @@ router.get('/view_vehicle', function (req, res) {
 
 
 router.post('/insertInDb', function (req, res, next) {
-    var name = req.body.company_name
-    var registration = req.body.registration
-    var vehicle_type = req.body.vehicle_type
-    var color = req.body.color
-    var driver = req.body.driver
-    var driver_no = req.body.driver_no
+    const customerId = req.body.company_name
+    const registration = req.body.registration
+    const vehicle_type = req.body.vehicle_type
+    const color = req.body.color
+    const driver = req.body.driver
+    const driver_no = req.body.driver_no
+    console.log("customer = " + customerId);
+    const Customer = Parse.Object.extend("Customer");
+    const Vehicle = Parse.Object.extend("Vehicle");
+    const query = new Parse.Query(Customer);
 
+    const check_select2 = req.body.check_select2;
 
-    if (name) {
-        const Product = Parse.Object.extend('Vehicle')
-        const product = new Product()
-        product.set('companyName', name)
-        product.set('registration', registration)
-        product.set('vehicle_type', vehicle_type)
-        product.set('color', color)
-        product.set('driver', driver)
-        product.set('driver_no', driver_no)
+    console.log("check_select2: " + check_select2.text);
 
+    query
+        .get(customerId)
+        .then(customer => {
+            console.log("==> customer data: " + customer);
+            const vehicle = new Vehicle();
+            vehicle.set("companyName", customer);
+            vehicle.set("registration", registration);
+            vehicle.set("vehicle_type", vehicle_type);
+            vehicle.set("color", color);
+            vehicle.set("driver", driver);
+            vehicle.set("driver_no", driver_no);
+            console.log("then ==> customer data: " + customer);
+            vehicle
+                .save()
+                .then(result => {
 
-        product
-            .save()
-            .then(result => {
-                res.redirect('view_vehicle')
-            })
-            .catch(err => {
-                // render error view here
-            })
-    }
+                    res.redirect("/vehicle/view_vehicle");
+                })
+                .catch(err => {
+                    // render error view here
+                    console.log("error bal" + err);
+                });
+        })
+        .catch(err => {
+            console.log(err);
+        });
+
 })
 
 
