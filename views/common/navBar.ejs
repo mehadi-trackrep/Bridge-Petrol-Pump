@@ -9,11 +9,18 @@
         <span class="mui-caret"></span>
       </button>
       <ul class="mui-dropdown__menu mui-dropdown__menu--right">
-        <li><a href="#">Inventory</a></li>
-        <li><a href="#">Sale</a></li>
+        <li><a href="/report/currentSummery">Inventory</a></li>
+        <li><a href="/report/salesBetweenTime">Sales Between Time</a></li>
+        <li><a href="/report/salesToCustomer">Sales To Customer</a></li>
+        <li><a href="/report/salesToVehicle">Sales To Vehicle</a></li>
       </ul>
     </div>
-    <button class="mui-btn">Logout</button>
+    <button class="mui-btn" id="logout">Logout</button>
     <span class="mui--text-title mui--visible-xs-inline-block mui--visible-sm-inline-block">Brand.io</span>
   </div>
 </div>
+<script type="text/javascript">
+  document.getElementById("logout").onclick = function () {
+    location.href = "/logout";
+  };
+</script>

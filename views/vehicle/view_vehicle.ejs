@@ -19,39 +19,54 @@
           <label>Search..</label>
         </div>
         <br>
-        <table class="mui-table">
-          <thead>
-            <tr>
-              <th>Company name</th>
-              <th>Registration</th>
-              <th>Type</th>
-              <th>Driver Name</th>
-              <th>Driver Contact</th>
-            </tr>
-          </thead>
-          <tbody id="myTable">
-            <% products.forEach(function (product) { %>
-            <tr>
-              <td><%= product.get('companyName') %></td>
-              <td><%= product.get('registration') %></td>
-              <td><%= product.get('vehicle_type') %></td>
-              <td><%= product.get('driver') %></td>
-              <td><%= product.get('driver_no') %></td>
-            </tr>
-            <% }); %>
-          </tbody>
-        </table>
+        <!-- <div class="mui-panel" style=" height: 500px;"> -->
+        <div style="height:480px;overflow-y:auto;overflow-x:auto;margin-top: 1%; ">
+          <table id="customers" class="table table-striped table-bordered table-sm " cellspacing="0" width="100%"
+            style="overflow: scroll;">
+            <thead>
+              <tr>
+                <th>Company name</th>
+                <th>Registration</th>
+                <th>Type</th>
+                <th>Driver Name</th>
+                <th>Driver Contact</th>
+              </tr>
+            </thead>
+            <tbody id="myTable">
+              <% vehicles.forEach(function (vehicle) { %>
+              <tr>
+                <td><%= vehicle.get('companyName').get('name') %></td>
+                <td><%= vehicle.get('registration') %></td>
+                <td><%= vehicle.get('vehicle_type') %></td>
+                <td><%= vehicle.get('driver') %></td>
+                <td><%= vehicle.get('driver_no') %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
 
+          <!-- </div> -->
+        </div>
+
+        <div>
+          <center>
+            <nav aria-label="Page navigation example" style="margin-top:5 px">
+              <ul class="pagination">
+                <li id="pageNo" class="page-item"><a class="page-link" href="/bill/find_bills">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+              </ul>
+            </nav>
+
+          </center>
+        </div>
       </div>
-
     </div>
   </div>
-  <footer id="footer" style="background-color: black;">
-    <div class="mui-container-fluid">
-      <br>
-      <center> Made with ♥ by <a href="#">Bridge Tech</a> </center>
-    </div>
-  </footer>
+
+
+  </div>
+  <% include ../common/footer.ejs %>
   <script>
     $(document).ready(function () {
       $("#myInput").on("keyup", function () {

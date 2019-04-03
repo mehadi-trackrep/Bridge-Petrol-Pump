@@ -16,16 +16,16 @@
                     <legend>Add stock</legend>
                     <div class="mui-row">
                         <div class="mui-select mui-col-md-12">
-                            <select name="company_name">
+                            <select name="pid">
                                 <% products.forEach(function (product) { %>
-                                <option><%= product.get('name') %></option>
+                                <option value="<%=product.id%>"><%=product.get('name')%></option>
                                 <% }); %>
                             </select>
                             <label>Select product</label>
                         </div>
                     </div>
                     <div class="mui-textfield">
-                        <input type="text" name="quantity" required placeholder="Quantity" />
+                        <input type="number" step="0.01" min="0.01" name="quantity" required placeholder="Quantity" />
                     </div>
                     <div class="mui-textfield">
                         <input type="text" name="buying_price" required placeholder="Buying Price" />
@@ -41,12 +41,7 @@
         </div>
     </div>
 
-    <footer id="footer" style="background-color: black;">
-        <div class="mui-container-fluid">
-            <br>
-            <center> Made with ♥ by <a href="#">Bridge Tech</a> </center>
-        </div>
-    </footer>
+    <% include ../common/footer.ejs %>
 
 
 </body>

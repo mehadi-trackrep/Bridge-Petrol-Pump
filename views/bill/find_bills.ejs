@@ -8,69 +8,52 @@
   <header id="header">
     <% include ../common/navBar.ejs %>
   </header>
-
   <div id="content-wrapper ">
     <div class="mui--appbar-height"></div>
     <div class="mui-container">
-      <div class="mui-panel" style="margin-top: 1%; margin-left:10% ">
-        <h2>Search Customers</h2>
+      <div class="top-panel">
+        <h2>Search Bills</h2>
         <div class="mui-textfield mui-textfield--float-label">
           <input id="myInput" type="text">
           <label>Search..</label>
         </div>
         <br>
-        <table class="mui-table">
-          <thead>
-            <tr>
-              <th>Company name</th>
-              <th>Vehicle</th>
-              <th>Fuel</th>
-              <th>Quantity</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody id="myTable">
-            <tr>
-              <td>John</td>
-              <td>Doe</td>
-              <td>john@example.com</td>
-              <td>john@example.com</td>
-              <td>john@example.com</td>
-            </tr>
-            <tr>
-              <td>Mary</td>
-              <td>Moe</td>
-              <td>mary@mail.com</td>
-              <td>Moe</td>
-              <td>Moe</td>
-            </tr>
-            <tr>
-              <td>July</td>
-              <td>Dooley</td>
-              <td>july@greatstuff.com</td>
-              <td>Dooley</td>
-              <td>Dooley</td>
-            </tr>
-            <tr>
-              <td>Anja</td>
-              <td>Ravendale</td>
-              <td>a_r@test.com</td>
-              <td>a_r@test.com</td>
-              <td>a_r@test.com</td>
-            </tr>
-          </tbody>
-        </table>
 
+        <div class="panel">
+          <div style="height = 500px">
+            <table id="customers" class="table-bordered table-sm table table-striped" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>Vehicle</th>
+                  <th>Company name</th>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Discount</th>
+                  <th>Total price</th>
+                </tr>
+              </thead>
+              <tbody id="myTable">
+                <% bills.forEach(function (bill) { %>
+                <tr>
+                  <td><%= bill.get('vehicle') %></td>
+                  <td><%= bill.get('company') %></td>
+                  <td><%= bill.get('product') %></td>
+                  <td><%= bill.get('quantity') %></td>
+                  <td><%= bill.get('discount') %></td>
+                  <td><%= bill.get('totalPrice') %></td>
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
-  <footer id="footer" style="background-color: black;">
-    <div class="mui-container-fluid">
-      <br>
-      <center> Made with ♥ by <a href="#">Bridge Tech</a> </center>
-    </div>
-  </footer>
+
+
+
+  <% include ../common/footer.ejs %>
 
   <script>
     $(document).ready(function () {

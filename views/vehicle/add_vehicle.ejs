@@ -13,20 +13,25 @@
             <form class="mui-form" method="POST" action="/vehicle/insertInDb">
                 <legend>Add Vehicle</legend>
                 <div class="mui-row">
-                    <div class="mui-select mui-col-md-12">
+                    <div class="mui-select mui-col-md-6">
                         <select name="company_name">
-                            <% products.forEach(function (product) { %>
-                            <option><%= product.get('name') %></option>
+                            <% customers.forEach(function (customer) { %>
+                            <option value="<%=customer.id%>"><%= customer.get('name') %></option>
                             <% }) %>
                         </select>
-                        <label>Select product</label>
+                        <label>Select Company</label>
                     </div>
                 </div>
-                <div class="mui-textfield">
-                    <input type="text" name="registration" required placeholder="Registration No." />
-                </div>
                 <div class="mui-row">
-                    <div class="mui-select mui-col-md-12">
+                    <div class="mui-textfield mui-select mui-col-md-6">
+                        <input type="text" name="registration" id="vehicle-registration" required
+                            placeholder="Registration No." />
+                    </div>
+                </div>
+                <p id="invalid-message" style="color: red;"></p>
+                <br>
+                <div class="mui-row">
+                    <div class="mui-select mui-col-md-6">
                         <select name="vehicle_type">
                             <option selected>Bus</option>
                             <option>Micro Bus</option>
@@ -37,31 +42,77 @@
                             <option>Leguna</option>
                             <option>Zeep</option>
                         </select>
-                        <label>Select product</label>
+                        <label>Select Type</label>
                     </div>
                 </div>
-                <div class="mui-textfield">
-                    <input type="text" name="color" required placeholder="Color" />
+                <div class="mui-row">
+                    <div class="mui-select mui-col-md-6">
+                        <select name="color" id="vehicle-select">
+                            <option>White</option>
+                            <option>Black</option>
+                            <option>Blue</option>
+                            <option>Green</option>
+                            <option>Red</option>
+                            <option>Orange</option>
+                            <option>Yellow</option>
+                            <option>Purple</option>
+                            <option>Brown</option>
+                        </select>
+                        <label>Select Color</label>
+                    </div>
                 </div>
-                <div class="mui-textfield">
-                    <input type="text" name="driver" required placeholder="Driver name" />
+                <div class="mui-row">
+                    <div class="mui-textfield mui-select mui-col-md-6">
+                        <input type="text" name="driver" required placeholder="Driver name" />
+                    </div>
                 </div>
-                <div class="mui-textfield">
-                    <input type="text" name="driver_no" required placeholder="Driver Contact" />
+                <div class="mui-row">
+                    <div class="mui-textfield mui-select mui-col-md-6">
+                        <input type="text" name="driver_no" required placeholder="Driver Contact" />
+                    </div>
                 </div>
 
-                <button class="mui-btn mui-btn--primary mui-btn--raised" type="submit">
+                <button class="mui-btn mui-btn--primary mui-btn--raised" id="btnSubmit" type="submit">
                     Confirm
                 </button>
             </form>
         </div>
     </div>
-    <footer id="footer" style="background-color: black;">
-        <div class="mui-container-fluid">
-            <br>
-            <center> Made with ♥ by <a href="#">Bridge Tech</a> </center>
-        </div>
-    </footer>
+    <% include ../common/footer.ejs %>
+
+
+    <script>
+
+        // $('#invalid-message').html("Invalid quantitiy!!");
+
+        $('#vehicle-registration').keyup(function () {
+            // $('#invalid-message').html("");
+
+            var reg = $('#vehicle-registration').val();
+
+            var myLink = '/ajax/check-registration?id=' + reg;
+
+            $("#invalid-message").val('Checking...');
+
+            $.ajax({
+                url: myLink,
+                success: function (result) {
+                    if (result) {
+                        $("#invalid-message").html('This vehicle is already registered!');
+                        $('#btnSubmit').attr("disabled", true);
+                    } else {
+                        $("#invalid-message").html("");
+                        $('#btnSubmit').attr("disabled", false);
+                    }
+                },
+                error: function (err) {
+                    alert("API or Network fail");
+                }
+            });
+        })
+
+    </script>
+
 </body>
 
 </html>

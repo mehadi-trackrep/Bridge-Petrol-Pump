@@ -6,6 +6,8 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "async-local-storage": "^2.1.0",
+    "asyncstorage": "^1.5.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
@@ -14,6 +16,7 @@
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "^4.16.4",
+    "express-paginate": "^1.0.0",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.1",
     "http-errors": "~1.6.2",
@@ -21,7 +24,7 @@
     "mongoose": "^5.4.19",
     "morgan": "^1.9.1",
     "node-datetime": "^2.1.2",
-    "node-thermal-printer": "^4.0.1",
+    "node-thermal-printer": "^4.0.2",
     "nodemailer": "^5.1.1",
     "parse": "^2.2.1",
     "passport": "^0.4.0",
